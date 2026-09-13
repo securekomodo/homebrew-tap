@@ -32,7 +32,7 @@ class Codeshot < Formula
     # Rendering is self-contained: no network, no browser, no system fonts.
     system bin/"codeshot", "--preset", "code", "--sample", "--output", testpath/"sample.png"
     assert_path_exists testpath/"sample.png"
-    assert_equal "\x89PNG\r\n\x1a\n", (testpath/"sample.png").binread(8)
+    assert_equal "\x89PNG\r\n\x1a\n".b, (testpath/"sample.png").binread(8)
 
     system bin/"codeshot", "--preset", "git-diff", "--sample", "--output", testpath/"sample.svg"
     assert_match "<svg", (testpath/"sample.svg").read
